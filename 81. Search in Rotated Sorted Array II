@@ -1,0 +1,49 @@
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+        
+        if(nums.size() == 1) {
+            if(nums[0] == target)
+                return true;
+            else 
+                return false;
+        }
+        
+        int pivot = 0;
+        for(int i=1; i<nums.size(); i++) {
+            if(nums[i-1] > nums[i]) {
+                pivot = i;
+                break;
+            }
+        }
+        
+        int begin, end;
+        if(nums[pivot] <= target && nums[nums.size()-1] >= target) {
+            begin = pivot;
+            end = nums.size() - 1;
+        }
+        else {
+            begin = 0;
+            end = pivot - 1;
+        }
+        
+        while(begin <= end) {
+            
+            int mid = (begin + end) / 2;
+            
+            if(nums[mid] == target) {
+                return true;
+            }
+            else if(nums[mid] > target) {
+                end = mid - 1;
+            }
+            else {
+                begin = mid + 1;
+            }
+            
+        }
+        
+        return false;
+        
+    }
+};
