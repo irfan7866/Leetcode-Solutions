@@ -1,0 +1,45 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        
+        vector<int> ans;
+        int flag = 0;
+        
+        if(digits[digits.size()-1] == 9) {
+            ans.push_back(0);
+            flag = 1;
+        }
+        else {
+            ans.push_back(digits[digits.size()-1]+1);
+        }
+        
+        for(int i=digits.size()-2; i>=0; i--) {
+            if(digits[i] == 9) {
+                if(flag == 1) {
+                    ans.push_back(0);
+                }
+                else {
+                    ans.push_back(9);
+                }
+            }
+            else {
+                if(flag == 1) {
+                    ans.push_back(digits[i]+1);
+                    flag = 0;
+                }
+                else {
+                    ans.push_back(digits[i]);
+                }
+            }
+        }
+        
+        if(flag == 1) {
+            ans.push_back(1);
+        }
+        
+        reverse(ans.begin(), ans.end());
+        
+        return ans;
+
+    }
+};
