@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int h) {
+
+        int min = 1;
+        int max = INT_MIN;
+
+        for(int i=0; i<piles.size(); i++) 
+            if(piles[i] > max) max = piles[i];
+
+        int ans = -1;
+
+        while(min <= max) {
+            int mid = (min + max) / 2;
+            long long temp = 0;
+            for(int i=0; i<piles.size(); i++) {
+                int hours = ceil(piles[i] / (double) mid);
+                temp += hours;
+            }
+            if(temp <= h) {
+                ans = mid;
+                max = mid-1;
+            } 
+            else min = mid+1;
+        }
+
+        return ans;
+        
+    }
+};
