@@ -1,0 +1,26 @@
+class Solution {
+
+    double power(double x, int n) {
+        if(n == 0) return 1;
+        if(n == 1) return x;
+
+        double temp = power(x, n/2);
+
+        if(n%2 == 0) return temp*temp;
+        else return x*temp*temp;
+    }
+
+public:
+    double myPow(double x, int n) {
+
+        if(n > 0) {
+            return power(x, n);
+        }
+        else if(n < 0) {
+            return 1/power(x, n);
+        }
+
+        return 1;
+        
+    }
+};
