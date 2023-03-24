@@ -1,0 +1,27 @@
+class Solution {
+    int ans = 0;
+
+    int dfs(vector<pair<int, int>> adj[], int par, int node) {
+        for(auto &[child, dis] : adj[node]) {
+            if(child == par) continue;
+            if(dis == 1) ans++;
+            dfs(adj, node, child);
+        }
+
+        return ans;
+    }
+
+public:
+    int minReorder(int n, vector<vector<int>>& conn) {
+
+        vector<pair<int, int>> adj[n];
+
+        for(auto v : conn) {
+            adj[v[0]].push_back({v[1], 1});
+            adj[v[1]].push_back({v[0], -1});
+        }
+
+        return dfs(adj, -1, 0);
+        
+    }
+};
