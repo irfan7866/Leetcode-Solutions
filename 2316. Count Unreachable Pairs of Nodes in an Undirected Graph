@@ -1,0 +1,39 @@
+#define ll long long int
+
+class Solution {
+public:
+    void dfs(int node, unordered_map<int,vector<int>>& mp, ll& cnt, vector<int>& visited){
+
+        visited[node] = 1;
+        cnt++;
+
+        for(auto& i: mp[node])
+            if(visited[i]==0) 
+                dfs(i,mp,cnt,visited);   
+        
+    }
+
+    long long countPairs(int n, vector<vector<int>>& edges) {
+
+        unordered_map<int,vector<int>> mp;
+
+        for(int i=0;i<edges.size();i++){
+            mp[edges[i][0]].push_back(edges[i][1]);
+            mp[edges[i][1]].push_back(edges[i][0]);
+        }
+
+        ll ans = ((ll)n*(n-1))/2;
+        vector<int> visited(n,0);
+
+        for(int i=0;i<n;i++){
+            if(visited[i]==0){
+                ll cnt = 0;
+                dfs(i, mp, cnt, visited);
+                ans -= (cnt*(cnt-1))/2;
+            }
+        }
+
+        return ans;
+
+    }
+};
