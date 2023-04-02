@@ -1,0 +1,44 @@
+class Solution { 
+public: 
+    int findTheLongestBalancedSubstring(string s) { 
+        
+        
+        int ans=0; 
+        int n=s.size(); 
+        
+        for(int i=0;i<n;i++){ 
+            
+            int j=i; 
+            int cnt1=0,cnt2=0; 
+            
+            //Count the number of zeroes first.
+            for(;j<n;j++){ 
+                if(s[j]=='0') 
+                     cnt1++; 
+                if(s[j]=='1') 
+                    break; 
+            } 
+            
+            //Count the number of ones now.
+            int k=j; 
+            for(;k<n;k++) 
+            { 
+                if(s[k]=='1') 
+                    cnt2++; 
+                  
+                if(s[k]=='0') 
+                    break; 
+                
+                //If both the number of ones and zeroes matches then check count of ones + count of zeroes
+                // greater than ans or not if yes then update ans.
+                if(cnt1==cnt2){ 
+                    ans=max(ans,(k-i+1)); 
+               } 
+            } 
+             
+        } 
+        
+        return ans; 
+         
+    } 
+};
