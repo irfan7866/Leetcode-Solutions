@@ -1,0 +1,50 @@
+class Solution {
+public:
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        
+        vector<vector<int>> ans;
+        vector<int> unique;
+        
+        unordered_map<int, int> mp;
+        
+        for(int i=0; i<nums.size(); i++) {
+            
+            //Push unique elements into the vector.
+            if(mp[nums[i]] == 0) unique.push_back(nums[i]);
+            
+            //Increament the frequency of the element in the map.
+            mp[nums[i]]++;
+            
+        }
+        
+        int max = 0;
+        
+        for(int i=0; i<nums.size(); i++) {
+            
+            //Find the maximum frequency in the map.
+            //Our answer size will also be max.
+            if(mp[nums[i]] > max) max = mp[nums[i]];
+            
+        }
+        
+        for(int i=0; i<max; i++) {
+            vector<int> temp;
+            for(int i=0; i<unique.size(); i++) {
+                if(mp[unique[i]] > 0) {
+                    
+                    //Now push unique elements in temp and decreament the frequency in map.
+                    temp.push_back(unique[i]);
+                    mp[unique[i]]--;
+                    
+                }
+            }
+            
+            //push the temp into the answer.
+            ans.push_back(temp);
+            
+        }
+        
+        return ans;
+        
+    }
+};
