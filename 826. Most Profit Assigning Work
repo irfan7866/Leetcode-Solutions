@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int maxProfitAssignment(vector<int>& diff, vector<int>& pro, vector<int>& wor) {
+        sort(wor.begin(),wor.end());
+        map<int,int> mp;
+        vector<int> temp;
+        for(int i=0;i<diff.size();i++){
+            if(mp[diff[i]] < pro[i])
+                mp[diff[i]] = pro[i];
+        }
+        
+        for(auto itr : mp) {
+            temp.push_back(itr.first);
+        }
+
+        int ans = 0;
+        int best = 0;
+        int a = 0;
+
+        for(int i=0; i<wor.size(); i++) {
+            while(a < temp.size() && wor[i] >= temp[a]) {
+                best = max(best, mp[temp[a]]);
+                a++;
+            }
+            ans += best;
+        }
+        
+        return ans;
+    }
+};
