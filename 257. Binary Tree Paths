@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+
+    void solve(TreeNode* root, vector<string> &ans, string temp, int flag) {
+        if(root == NULL) return;
+
+        if(flag == 0) {
+            string val = to_string(root->val);
+            temp += val;
+            flag = 1;
+        }
+        else {
+            string val = to_string(root->val);
+            temp += "->" + val;
+        }
+        
+
+        if(root->left == NULL && root->right == NULL) {
+            ans.push_back(temp);
+            return;
+        }
+
+        solve(root->left, ans, temp, flag);
+        solve(root->right, ans, temp, flag);
+    }
+
+public:
+    vector<string> binaryTreePaths(TreeNode* root) {
+
+        vector<string> ans;
+
+        solve(root, ans, "", 0);
+
+        return ans;
+        
+    }
+};
