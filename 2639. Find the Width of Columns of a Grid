@@ -1,0 +1,40 @@
+class Solution {
+public:
+    vector<int> findColumnWidth(vector<vector<int>>& grid) {
+        
+        vector<int> ans;
+        
+        for(int i=0; i<grid[0].size(); i++) {
+            
+            int maxi = INT_MIN;
+            
+            for(int j=0; j<grid.size(); j++) {
+                
+                // Count the number of Characters in the number.
+                int cnt = 0;
+                
+                // If the number is negative then increament count and make number positive.
+                if(grid[j][i] <= 0) {
+                    cnt++;
+                    grid[j][i] = -grid[j][i];
+                }
+                
+                // Counting the number of characters of a positive number by dividing it by 10.
+                while(grid[j][i] > 0) {
+                    cnt++;
+                    grid[j][i] /= 10;
+                }
+                
+                // Check the maximum of maxi and characters count.
+                maxi = max(cnt, maxi);
+            }
+            
+            // Push the maximum value in our output array.
+            ans.push_back(maxi);
+        }
+        
+        // Output the answer.
+        return ans;
+        
+    }
+};
