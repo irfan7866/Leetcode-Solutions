@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<long long> findPrefixScore(vector<int>& nums) {
+        
+        
+        vector<long long > ans;
+        
+        // Initialize a max variable.
+        long long maxi=0;
+        
+        for(int i=0;i<nums.size();i++){
+            
+            // Put the maximum value of array till now in variable.
+            maxi=max((long long)nums[i],maxi);
+            
+            // Now add max value to the nums[i].
+            long long x=nums[i]+maxi;
+            
+            // If the i is 0 then directly push it to output array
+            // Else add the i-1 th value of output array to x and 
+            // push it to the output array on ith position.
+            if(ans.size()>0) 
+                ans.push_back(ans[ans.size()-1]+x);
+            else
+            ans.push_back(x);
+            
+        }
+        
+        return ans;
+        
+    }
+};
