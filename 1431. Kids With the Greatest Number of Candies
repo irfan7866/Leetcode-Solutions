@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<bool> kidsWithCandies(vector<int>& candies, int ext) {
+
+        vector<bool> ans;
+
+        int maxi = INT_MIN;
+
+        for(auto itr : candies) 
+            if(itr > maxi) 
+                maxi = itr;
+
+        for(auto itr : candies) {
+            if(itr + ext >= maxi) 
+                ans.push_back(true);
+            else 
+                ans.push_back(false);
+        }
+
+        return ans;
+        
+    }
+};
