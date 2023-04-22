@@ -1,0 +1,48 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+
+        if(s.size() == 1 || s.size() <= numRows || numRows == 1) 
+            return s;
+
+        string ans = "";
+
+        int n = int(s.size());
+        int section = ceil(n / (2 * numRows - 2.0));
+        int numCols = section * (numRows - 1);
+
+        vector<vector<char>> matrix(numRows, vector<char>(numCols, ' '));
+
+        int currRow = 0;
+        int currCol = 0;
+        int currIndex = 0;
+
+        while(currIndex < n) {
+
+            while(currRow < numRows && currIndex < n) {
+                matrix[currRow][currCol] = s[currIndex];
+                currRow++;
+                currIndex++;
+            }
+
+            currRow -= 2;
+            currCol++;
+
+            while(currRow > 0 && currCol < numCols && currIndex < n) {
+                matrix[currRow][currCol] = s[currIndex];
+                currRow--;
+                currCol++;
+                currIndex++;
+            }
+
+        }
+
+        for(auto& a : matrix) 
+            for(auto& b : a)
+                if(b != ' ')
+                    ans += b;
+        
+        return ans;
+        
+    }
+};
