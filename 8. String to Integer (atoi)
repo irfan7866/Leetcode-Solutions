@@ -1,0 +1,61 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+
+        string ans = "";
+        bool character = 0, sign = 0;
+
+        for(int i=0; i<s.length(); i++) {
+            if(s[i] == 32) {
+                if(character == 0 && sign == 0) continue;
+                else break;
+            }
+            else if((s[i] == '+' || s[i] == '-')) {
+                if(character == 0) {
+                    if(sign == 0) {
+                        ans += s[i];
+                        sign = 1;
+                    } else {
+                        break;
+                    }
+                }
+                else 
+                    break;
+            }
+            else if(s[i] >= '0' && s[i] <= '9') {
+                ans += s[i];
+                character = 1;
+            }
+            else {
+                break;
+            }
+        }
+
+        long long a = 0, i;
+        sign = 0;
+
+        if(ans[0] == '-') {
+            sign = 1;
+            i = 1;
+        }
+        else if(ans[0] == '+')
+            i = 1;
+        else 
+            i = 0;
+
+        for(; i<ans.size(); i++) {
+            a = a * 10 +(ans[i] - 48);
+            if(a > 2147483647 && sign == 0) {
+                a = 2147483647;
+                break;
+            }
+            else if(a > 2147483648 && sign == 1) {
+                a = 2147483648;
+                break;
+            }
+        }
+
+        return sign ? -a : a;
+        
+    }
+};
