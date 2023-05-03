@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
+
+        map<int, int> mp;
+        vector<vector<int>> ans;
+        vector<int> temp;
+        
+        for(auto itr : nums2) 
+            mp[itr]++;
+
+        for(auto itr : nums1) {
+            if(mp[itr] == 0) {
+                temp.push_back(itr);
+                mp[itr]++;
+            }
+        }
+            
+        ans.push_back(temp);
+
+        mp.clear();
+        temp.clear();
+
+        for(auto itr : nums1) 
+            mp[itr]++;
+
+        for(auto itr : nums2) {
+            if(mp[itr] == 0) {
+                temp.push_back(itr);
+                mp[itr]++;
+            }
+        }
+            
+        ans.push_back(temp);
+
+        return ans;
+        
+    }
+};
