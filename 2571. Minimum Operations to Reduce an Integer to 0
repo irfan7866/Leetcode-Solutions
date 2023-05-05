@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int minOperations(int n) {
+
+        int ans = 0;
+
+        while(n > 0) {
+            int cnt = 0;
+            int small = INT_MAX;
+            while(true) {
+                int temp = abs(n - pow(2,cnt));
+                if(temp < small) small = temp;
+                else break;
+                cnt++;
+            }
+            n = small;
+            ans++;
+        }
+
+        return ans;
+        
+    }
+};
