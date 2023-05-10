@@ -1,0 +1,78 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+
+        int left = 0;
+        int right = n-1;
+        int top = 0;
+        int bottom = n-1;
+
+        vector<vector<int>> ans;
+        vector<int> temp;
+
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<n; j++) {
+                temp.push_back(0);
+            }
+            ans.push_back(temp);
+            temp.clear();
+        }
+
+        int num = 1;
+        int i = left;
+        int j = top;
+
+        while(i <= right && i >= left && j <= bottom && j >= top) {
+
+            while(i <= right) {
+                ans[j][i] = num;
+                num++;
+                i++;
+            }
+
+            j++;
+            i--;
+            top++;
+
+            while(j <= bottom) {
+                ans[j][i] = num;
+                num++;
+                j++;
+            }
+
+            j--;
+            i--;
+            right--;
+
+            if(top > bottom || left > right)
+                break;
+
+            while(i >= left) {
+                ans[j][i] = num;
+                num++;
+                i--;
+            }
+
+            i++;
+            j--;
+            bottom--;
+
+            while(j >= top) {
+                ans[j][i] = num;
+                num++;
+                j--;
+            }
+
+            j++;
+            i++;
+            left++;
+
+            if(top > bottom || left > right)
+                break;
+
+        }
+
+        return ans;
+        
+    }
+};
