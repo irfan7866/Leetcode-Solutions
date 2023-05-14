@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool checkValid(vector<vector<int>>& matrix) {
+
+        map<int, int> mp;
+        int n = matrix.size();
+
+        if(n == 1) return true;
+
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<n; j++) {
+                if(mp[matrix[i][j]]) return false;
+                mp[matrix[i][j]]++;
+            }
+            mp.clear();
+        }
+
+        mp.clear();
+
+        for(int j=0; j<n; j++) {
+            for(int i=0; i<n; i++) {
+                if(mp[matrix[i][j]]) return false;
+                mp[matrix[i][j]]++;
+            }
+            mp.clear();
+        }
+
+        return true;
+        
+    }
+};
