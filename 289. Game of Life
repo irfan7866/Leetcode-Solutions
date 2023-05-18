@@ -1,0 +1,54 @@
+class Solution {
+public:
+    int getNeighbours(vector<vector<int>>& curr, int i, int j, int n, int m) {
+        int lives = 0;
+        if(i > 0) {
+            if(curr[i-1][j] == 1) lives++;
+        }
+        if(i < n-1) {
+            if(curr[i+1][j] == 1) lives++;
+        }
+        if(j > 0) {
+            if(curr[i][j-1] == 1) lives++;
+        }
+        if(j < m-1) {
+            if(curr[i][j+1] == 1) lives++;
+        }
+        if(i > 0 and j > 0) {
+            if(curr[i-1][j-1] == 1) lives++;
+        }
+        if(i > 0 and j < m-1) {
+            if(curr[i-1][j+1] == 1) lives++;
+        }
+        if(i < n-1 and j > 0) {
+            if(curr[i+1][j-1] == 1) lives++;
+        }
+        if(i < n-1 and j < m-1) {
+            if(curr[i+1][j+1] == 1) lives++;
+        }
+        return lives;
+    }
+    
+    void gameOfLife(vector<vector<int>>& board) {
+
+        int n = board.size();
+        int m = board[0].size();
+
+        vector<vector<int>> curr = board;
+
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<m; j++) {
+                int neighbours = getNeighbours(curr, i, j, n, m);
+                if(board[i][j] == 0) {
+                    if(neighbours == 3) 
+                        board[i][j] = 1;
+                }
+                else if(board[i][j] == 1) {
+                    if(neighbours < 2 or neighbours > 3) 
+                        board[i][j] = 0;
+                }
+            }
+        }
+        
+    }
+};
