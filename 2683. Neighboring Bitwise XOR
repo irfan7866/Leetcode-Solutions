@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool doesValidArrayExist(vector<int>& derived) {
+
+        int total = 0;
+
+        for(auto it : derived) 
+            total = total ^ it;
+
+        return total == 0;
+        
+    }
+};
