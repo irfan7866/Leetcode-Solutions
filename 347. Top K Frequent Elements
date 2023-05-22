@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+
+        map<int, int> freq;
+        vector<int> unique;
+        multimap<int, int, greater<int>> temp;
+        int cnt = 0;
+
+        for(int i=0; i<nums.size(); i++) {
+            if(freq[nums[i]] == 0)
+                unique.push_back(nums[i]);
+            freq[nums[i]]++;
+        }
+
+        for(int i=0; i<unique.size(); i++) {
+            temp.insert(pair<int, int>(freq[unique[i]], unique[i]));
+        }
+ 
+        unique.clear();
+
+        for(auto &itr : temp) {
+            if(cnt == k) break;
+            unique.push_back(itr.second);
+            cnt++;
+        }
+
+        return unique;
+        
+    }
+};
