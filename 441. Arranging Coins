@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int arrangeCoins(int n) {
+
+        int ans = 1;
+
+        while(n) {
+            if(n > ans) {
+                n -= ans;
+                ans++;
+            }
+            else if(n == ans) return ans;
+            else return ans-1;
+        }
+
+        return -1;
+        
+    }
+};
