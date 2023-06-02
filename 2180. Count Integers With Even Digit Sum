@@ -1,0 +1,22 @@
+class Solution {
+    bool isEven(int n) {
+        int temp = 0;
+        while(n > 0) {
+            temp += n%10;
+            n = n/10;
+        }
+        return temp%2 == 0 ? true : false;
+    }
+public:
+    int countEven(int num) {
+
+        int cnt = 0;
+
+        for(int i=1; i<=num; i++) {
+            if(isEven(i)) cnt++;
+        }
+
+        return cnt;
+        
+    }
+};
