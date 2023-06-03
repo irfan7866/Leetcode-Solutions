@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int alternateDigitSum(int n) {
+
+        int cnt = 0;
+        int ans = 0;
+        int temp = n;
+
+        while(temp > 0) {
+            cnt++;
+            temp = temp/10;
+        }
+
+        int flag = 0;
+        if(cnt % 2 == 0) flag = 1;
+
+        while(n > 0) {
+            temp = n % 10;
+            n = n/10;
+            if(flag == 1) {
+                ans -= temp;
+                flag = 0;
+            }
+            else {
+                ans += temp;
+                flag = 1;
+            }
+        }
+
+        return ans;
+        
+    }
+};
