@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool checkStraightLine(vector<vector<int>>& cor) {
+
+        int x0 = cor[0][0];
+        int x1 = cor[1][0];
+        int y0 = cor[0][1];
+        int y1 = cor[1][1];
+
+        int dx = x1 - x0;
+        int dy = y1 - y0;
+
+        for(auto it : cor) {
+            int x = it[0];
+            int y = it[1];
+
+            if(dx * (y - y1) != dy * (x - x1)) return false;
+        }
+
+        return true;
+        
+    }
+};
