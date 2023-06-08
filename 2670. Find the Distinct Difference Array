@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> distinctDifferenceArray(vector<int>& nums) {
+        vector<int> ans;
+        int n=nums.size();
+        set<int> pre;
+        for(int i=0;i<n;i++)
+        {
+            pre.insert(nums[i]);
+            set<int> suff(nums.begin()+i+1,nums.end());
+            ans.push_back(pre.size()-suff.size());
+        }
+        
+        return ans;
+    }
+};
