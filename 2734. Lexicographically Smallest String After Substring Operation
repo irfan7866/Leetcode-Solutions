@@ -1,0 +1,43 @@
+class Solution {
+public:
+    string smallestString(string s) {
+        if(s.size()==1 && s[0]=='a')
+            return "z";
+        string x=s;
+        sort(x.begin(),x.end());
+        if(x[0]=='a' && x[x.size()-1]=='a')
+           { 
+            x[x.size()-1]='z';
+            return x;
+           }
+        int i=0;
+        string t="";
+        while(s[i]=='a' && i<s.size())
+        {
+            t+=s[i];
+            i++;
+        }
+        string temp="";
+        while(s[i]!='a' && i<s.size())
+        {
+            temp+=s[i];
+            i++;
+        }
+        
+        int j=0;
+        while(j<temp.size())
+        {
+            temp[j]--;
+            j++;
+        }
+        
+        string result=t+temp;
+        while(i<s.size())
+        {
+            result+=s[i++];
+        }
+        
+        return result;
+        
+    }
+};
