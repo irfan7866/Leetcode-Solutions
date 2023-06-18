@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int distanceTraveled(int mainTank, int additionalTank) {
+
+        int ans = 0;
+
+        while(mainTank) {
+
+            if(mainTank < 5) {
+                ans += mainTank;
+                break;
+            }
+            else {
+                ans += 5;
+                mainTank -= 5;
+                if(additionalTank >= 1) {
+                    mainTank += 1;
+                    additionalTank--;
+                }
+            }
+
+        }
+
+        return 10 * ans;
+        
+    }
+};
