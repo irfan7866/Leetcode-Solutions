@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int findMinArrowShots(vector<vector<int>>& pt) {
+
+        sort(pt.begin(), pt.end(), [](const vector<int>& a, const vector<int>& b) {
+            return a[1] < b[1];
+        });
+
+        int ans = 1;
+        int end = pt[0][1];
+
+        for(int i=1; i<pt.size(); i++) {
+            if(pt[i][0] > end) {
+                ans++;
+                end = pt[i][1];
+            }
+        }
+
+        return ans;
+        
+    }
+};
