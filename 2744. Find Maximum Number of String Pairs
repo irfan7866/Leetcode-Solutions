@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int maximumNumberOfStringPairs(vector<string>& words) {
+
+        map<string, int> mp;
+        string st = "";
+
+        for(int i=0; i<words.size(); i++) 
+            mp[words[i]]++;
+
+        int ans = 0;
+
+        for(int i=0; i<words.size(); i++) {
+            st = words[i];
+            reverse(words[i].begin(), words[i].end());
+            if(st == words[i]) {
+                if(mp[st] >= 2) {
+                    ans += 1;
+                    mp[st] -= 2;
+                }
+            }
+            else {
+                if(mp[st] and mp[words[i]]) {
+                    ans += 1;
+                    mp[st]--;
+                    mp[words[i]]--;
+                }
+            }
+        }
+
+        return ans;
+        
+    }
+};
