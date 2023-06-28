@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int similarPairs(vector<string>& words) {
+
+        int ans = 0;
+
+        for(int i=0; i<words.size(); i++) {
+            map<char, int> mp1;
+            for(int k=0; k<words[i].size(); k++)
+                    if(mp1[words[i][k]] == 0) 
+                        mp1[words[i][k]]++;
+            for(int j=i+1; j<words.size(); j++) {
+                map<char, int> mp2;
+                for(int k=0; k<words[j].size(); k++)
+                    if(mp2[words[j][k]] == 0) 
+                        mp2[words[j][k]]++;
+                if(mp1 == mp2) ans++;
+            }
+        }
+
+        return ans;
+        
+    }
+};
