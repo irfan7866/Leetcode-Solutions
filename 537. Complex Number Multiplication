@@ -1,0 +1,50 @@
+class Solution {
+public:
+    string complexNumberMultiply(string num1, string num2) {
+
+        int real1 = 0;
+        int real2 = 0;
+        int img1 = 0;
+        int img2 = 0;
+
+        int i = 0;
+        string temp = "";
+        while(num1[i] != '+') 
+            temp += num1[i++];
+
+        real1 = stoi(temp);
+        i++;
+        temp = "";
+        
+        while(num1[i] != 'i') 
+            temp += num1[i++];
+
+        img1 = stoi(temp);
+        
+        i = 0;
+        temp = "";
+
+        while(num2[i] != '+')
+            temp += num2[i++];
+
+        real2 = stoi(temp);
+        i++;
+        temp = "";
+
+        while(num2[i] != 'i') 
+            temp += num2[i++];
+
+        img2 = stoi(temp);
+
+        int real = 0;
+        int img = 0;
+
+        real = (real1 * real2) - (img1 * img2);
+        img = real1 * img2 + real2 * img1;
+
+        string ans = to_string(real) + "+" + to_string(img) + "i";
+
+        return ans;
+
+    }
+};
