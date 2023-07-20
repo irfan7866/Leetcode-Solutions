@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int pivotInteger(int n) {
+
+        int temp = 0;
+
+        for(int i=1; i<=n; i++)
+            temp += i;
+
+        int e = 0;
+
+        for(int i=n; i>=1; i--) {
+            e += i;
+            if(temp == e) return i;
+            temp -= i;
+        }
+
+        return -1;
+        
+    }
+};
