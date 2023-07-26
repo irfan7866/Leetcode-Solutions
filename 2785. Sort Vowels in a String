@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string sortVowels(string s) {
+
+        vector<char> str;
+
+        for(auto it : s)
+            if(it == 'a' || it == 'A' || it == 'e' || it == 'E' || it == 'i' || it == 'I' || it == 'o' || it == 'O' || it == 'u' || it == 'U')
+                str.push_back(it);
+
+        sort(str.begin(), str.end());
+
+        int cnt = 0;
+
+        for(int i=0; i<s.size(); i++) {
+            char it = s[i];
+            if(it == 'a' || it == 'A' || it == 'e' || it == 'E' || it == 'i' || it == 'I' || it == 'o' || it == 'O' || it == 'u' || it == 'U')
+                s[i] = str[cnt++];
+        }
+
+        return s;
+    
+    }
+};
