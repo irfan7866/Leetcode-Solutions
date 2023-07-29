@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool judgeCircle(string moves) {
+
+        int ver = 0;
+        int hor = 0;
+
+        for(auto it : moves) {
+            if(it == 'U') ver++;
+            else if(it == 'D') ver--;
+            else if(it == 'L') hor++;
+            else hor--;
+        }
+
+        return ver == 0 and hor == 0;
+        
+    }
+};
