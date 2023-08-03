@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isGood(vector<int>& nums) {
+
+        map<int, int> mp;
+        int maxi = nums[0];
+
+        for(int i=0; i<nums.size(); i++) {
+            if(nums[i] > maxi)
+                maxi = nums[i];
+
+            mp[nums[i]]++;
+        }
+
+        for(int i=1; i<maxi; i++) 
+            if(mp[i] == 0) 
+                return false;
+        
+        return mp[maxi] == 2 and nums.size() == maxi+1;
+        
+    }
+};
