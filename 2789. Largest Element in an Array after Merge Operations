@@ -1,0 +1,17 @@
+class Solution {
+public:
+    long long maxArrayValue(vector<int>& nums) {
+
+        long long ans = 0, suf = 0;
+
+        for(int i=nums.size()-1; i>=0; i--) {
+            if(nums[i] > suf) 
+                suf = 0;
+            suf += nums[i];
+            ans = max(ans, suf);
+        }
+
+        return ans;
+        
+    }
+};
