@@ -1,0 +1,35 @@
+class Solution {
+public:
+    string reverseOnlyLetters(string s) {
+
+        string ans = "";
+
+        for(auto it : s) {
+            if(it >= 65 and it <= 90)
+                ans += it;
+            else if(it >= 97 and it <= 122)
+                ans += it;
+        }
+
+        int st = 0;
+        int e = ans.size()-1;
+
+        while(st <= e) {
+            char a = ans[st];
+            ans[st] = ans[e];
+            ans[e] = a;
+            st++;
+            e--;
+        }
+
+        int cnt = 0;
+
+        for(int i=0; i<s.size(); i++) {
+            if((s[i] >= 65 and s[i] <= 90) or (s[i] >= 97 and s[i] <= 122)) 
+                s[i] = ans[cnt++];
+        }
+
+        return s;
+        
+    }
+};
