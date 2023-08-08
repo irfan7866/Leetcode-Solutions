@@ -1,0 +1,29 @@
+class Solution {
+    string reverse(string str) {
+        int s = 0;
+        int e = str.size()-1;
+        while(s <= e) {
+            char a = str[s];
+            str[s] = str[e];
+            str[e] = a;
+            s++;
+            e--;
+        }
+        return str;
+    }
+public:
+    string finalString(string s) {
+
+        string ans = "";
+
+        for(int i=0; i<s.size(); i++) {
+            if(s[i] == 'i' and ans != "") 
+                ans = reverse(ans);
+            else 
+                ans += s[i];
+        }
+
+        return ans;
+        
+    }
+};
