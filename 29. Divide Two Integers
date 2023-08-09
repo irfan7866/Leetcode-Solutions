@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int divide(long int dividend, long int divisor) {
+
+        if(dividend == INT_MIN) {
+            if(divisor == -1) 
+                return INT_MAX;
+            if(divisor == 1)
+                return INT_MIN;
+        }
+
+        bool neg = false;
+        if(dividend < 0)
+            neg = !neg;
+        if(divisor < 0)
+            neg = !neg; 
+
+        long long int dv = abs(dividend);
+        long long int ds = abs(divisor);
+
+        int ans = 0;
+
+        while(ds <= dv) {
+            long long int sum = ds, count = 1;
+            while(sum <= dv - sum) {
+                count += count;
+                sum += sum;
+            }
+            dv -= sum;
+            ans += count;
+        }
+
+        if(neg)
+            return -ans;
+        
+        return ans;
+        
+    }
+};
