@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int binaryGap(int n) {
+
+        int ans = 0;
+        int cnt = 0;
+        int flag = 0;
+
+        while(n > 0) {
+            if(n % 2 == 0) {
+                if(flag == 1) {
+                    cnt++;
+                }
+            }
+            else {
+                if(flag == 0) 
+                    flag = 1;
+                else {
+                    ans = max(cnt+1, ans);
+                    cnt = 0;
+                }
+            }
+            n = n/2;
+        }
+
+        return ans;
+        
+    }
+};
