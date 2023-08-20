@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minimumSum(int n, int k) {
+
+        map<int, int> mp;
+
+        int sum = 0;
+        int cnt = 1;
+
+        for(int i=1; i<=n; ) {
+            if(mp[k-cnt] > 0) {
+                cnt++;
+            }
+            else {
+                mp[cnt]++;
+                sum += cnt;
+                cnt++;
+                i++;
+            }
+        }
+
+        return sum;
+        
+    }
+};
