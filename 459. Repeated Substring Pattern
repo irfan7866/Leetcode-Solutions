@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+
+        string temp = "";
+
+        for(int i=0; i<s.size(); i++) {
+            if(temp != "" and s.size() % temp.size() == 0 and s[i] == temp[0]) {
+                string check = "";
+                while(check.size() != s.size())
+                    check += temp;
+                if(check == s) 
+                    return true;
+            }
+            temp += s[i];
+        }
+
+        return false;
+        
+    }
+};
