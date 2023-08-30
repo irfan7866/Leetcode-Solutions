@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int clumsy(int n) {
+
+        if(n <= 2) 
+            return n;
+
+        int ans = 0;
+
+        ans += ((n * (n-1)) / (n-2));
+        n = n-3;
+
+        while(n > 0) {
+            ans += n;
+            int a = 0;
+            if(n-1 > 0) {
+                if(n-2 > 0) {
+                    a += (n-1) * (n-2);
+                }
+                else {
+                    ans -= (n-1);
+                    break;
+                }
+            }
+            if(n-3 > 0) {
+                a = a/(n-3);
+            }
+            ans -= a;
+            n = n-4;
+        }
+
+        return ans;
+        
+    }
+};
