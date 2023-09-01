@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> pathInZigZagTree(int label) {
+
+        int level = 0;
+
+        if(label == 1) 
+            return {1};
+
+        vector<int> ans;
+
+        while(pow(2, level) <= label)
+            level++;
+
+        ans.push_back(label);
+
+        int rem = (pow(2, level) - 1 - label) / 2;
+        level--;
+        
+        while(level > 0) {
+            label = pow(2, level) - pow(2, level-1) + rem;
+            ans.push_back(label);
+
+            rem = (pow(2, level) - 1 - label) / 2;
+            level--;
+        } 
+
+        reverse(ans.begin(), ans.end());
+
+        return ans;
+        
+    }
+};
