@@ -1,0 +1,32 @@
+class Solution {
+
+    bool check(string str1, string str2) {
+
+        if(str1 == str2)
+            return true;
+        
+        int j = 0;
+        for(int i=0; i<str1.size(); i++) {
+            if(j < str2.size() and str1[i] == str2[j]) {
+                j++;
+            }
+            else if(str1[i] >= 'A' and str1[i] <= 'Z')
+                return false;
+        }
+
+        return j == str2.size();
+
+    }
+
+public:
+    vector<bool> camelMatch(vector<string>& queries, string pattern) {
+
+        vector<bool> ans;
+
+        for(int i=0; i<queries.size(); i++) 
+            ans.push_back(check(queries[i], pattern));
+
+        return ans;
+
+    }
+};
