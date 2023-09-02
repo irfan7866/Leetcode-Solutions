@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> sumEvenAfterQueries(vector<int>& nums, vector<vector<int>>& q) {
+
+        vector<int> ans;
+        int evenSum = 0;
+
+        for(auto it : nums)
+            if(it % 2 == 0)
+                evenSum += it;
+            
+        for(int i=0; i<q.size(); i++) {
+            int value = q[i][0];
+            int index = q[i][1];
+
+            if(nums[index]%2 == 0) 
+                evenSum -= nums[index];
+
+            nums[index] += value;
+
+            if(nums[index] % 2 == 0) 
+                evenSum += nums[index];
+
+            ans.push_back(evenSum);
+        }
+
+        return ans;
+        
+    }
+};
