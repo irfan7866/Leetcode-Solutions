@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> relocateMarbles(vector<int>& nums, vector<int>& moveFrom, vector<int>& moveTo) {
+
+        map<int, int> mp;
+
+        for(auto it : nums)
+            mp[it]++;
+        
+        for(int i=0; i<moveFrom.size(); i++) {
+            if(mp[moveTo[i]] == 0)
+                mp[moveTo[i]]++;
+            if(moveFrom[i] != moveTo[i])
+                mp[moveFrom[i]] = 0;
+        }
+
+        vector<int> ans;
+
+        for(auto it : mp)
+            if(it.second > 0)
+                ans.push_back(it.first);
+        
+        return ans;
+        
+    }
+};
