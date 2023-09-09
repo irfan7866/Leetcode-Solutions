@@ -1,43 +1,28 @@
 class Solution {
 public:
     string smallestString(string s) {
-        if(s.size()==1 && s[0]=='a')
-            return "z";
-        string x=s;
-        sort(x.begin(),x.end());
-        if(x[0]=='a' && x[x.size()-1]=='a')
-           { 
-            x[x.size()-1]='z';
-            return x;
-           }
+
+        int flag = 0;
         int i=0;
-        string t="";
-        while(s[i]=='a' && i<s.size())
-        {
-            t+=s[i];
+
+        while(i < s.size()) {
+            if(s[i] == 'a' and flag == 0) {
+                i++;
+                continue;
+            }
+            else if(s[i] == 'a' and flag == 1) 
+                break;
+            else {
+                s[i]--;
+                flag = 1;
+            }
             i++;
         }
-        string temp="";
-        while(s[i]!='a' && i<s.size())
-        {
-            temp+=s[i];
-            i++;
-        }
-        
-        int j=0;
-        while(j<temp.size())
-        {
-            temp[j]--;
-            j++;
-        }
-        
-        string result=t+temp;
-        while(i<s.size())
-        {
-            result+=s[i++];
-        }
-        
-        return result;
+
+        if(flag == 0) 
+            s[s.size()-1] = 'z';
+
+        return s;
         
     }
 };
