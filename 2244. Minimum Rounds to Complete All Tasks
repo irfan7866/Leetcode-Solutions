@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int minimumRounds(vector<int>& tasks) {
+
+      int ans = 0;
+      unordered_map<int, int> mp;
+
+      for(auto it : tasks)
+        mp[it]++;
+      
+      for(auto it : mp) {
+        int temp = it.second;
+        if(temp == 1)
+          return -1;
+        while(temp > 0) {
+          ans++;
+          temp -= 3;
+        }
+      }
+
+      return ans;
+        
+    }
+};
